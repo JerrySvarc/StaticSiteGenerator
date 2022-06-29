@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator
+﻿namespace StaticSiteGenerator.src
 {
     internal class Program
     {
