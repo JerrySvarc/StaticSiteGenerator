@@ -1,4 +1,4 @@
-# Static site generator - by Jaroslav Švarc
+# Static site generator
 This program is created as a semestral project for the NPRG035 and NPRG038 courses. 
 ## 1. Introduction
 Static site generator is a program which generates static websites. Users create *Markdown* files which are then converted into *HTML*. Because of that, users don't need to know *HTML* to create websites. 
