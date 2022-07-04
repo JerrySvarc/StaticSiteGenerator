@@ -1,6 +1,11 @@
-﻿namespace StaticSiteGenerator.src
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace StaticSiteGenerator.src
 {
-    static class DirectoryCreator
+    static class Creator
     {
         public static void CreateTemplateDirectories()
         {
@@ -14,8 +19,7 @@
             }
             catch (Exception e)
             {
-
-                throw e;
+                Console.WriteLine("An error has occured. Cannot create website directories.");
             }
         }
 
@@ -31,8 +35,7 @@
             }
             catch (Exception e)
             {
-
-                throw e;
+                Console.WriteLine("An error has occured. Cannot create website directories.");
             }
         }
 
@@ -40,9 +43,6 @@
         {
 
         }
-        public static void CreateOutputDirectory()
-        {
-
-        }
+        
     }
 }
