@@ -1,10 +1,16 @@
 ﻿namespace StaticSiteGenerator.src
 {
-    internal class Generator
+    internal class Generator 
     {
-        static void Main(string[] args)
+        IParser Parser { get; set; }
+        public Generator(IParser parser)
         {
-           
+            Parser = parser;
+        }
+
+        public void GenerateHTML()
+        {
+
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿namespace StaticSiteGenerator.src
 {
-    internal interface IParser
+    internal class MarkdownParser : IParser
     {
-
 
     }
 }
