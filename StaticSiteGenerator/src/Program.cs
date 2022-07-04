@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticSiteGenerator.src
+﻿namespace StaticSiteGenerator.src
 {
     class Program
     {
@@ -13,10 +7,10 @@ namespace StaticSiteGenerator.src
             switch (args.Length)
             {
                 case 0:
-                    Creator.CreateTemplateDirectories();
+                    DirectoryCreator.CreateTemplateDirectories();
                     break;
                 case 1:
-                    if (args[0].ToLower() != "compile" )
+                    if (args[0].ToLower() != "compile")
                     {
                         Console.WriteLine("Wrong arguments. Please try again.");
                         PrintHelp();

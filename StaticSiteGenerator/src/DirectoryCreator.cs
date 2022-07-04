@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace StaticSiteGenerator.src
+﻿namespace StaticSiteGenerator.src
 {
-    static class Creator
+    static class DirectoryCreator
     {
         public static void CreateTemplateDirectories()
         {
@@ -17,7 +12,7 @@ namespace StaticSiteGenerator.src
                 Directory.CreateDirectory(websiteDirectory + "/posts");
                 Directory.CreateDirectory(websiteDirectory + "/pictures");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("An error has occured. Cannot create website directories.");
             }
@@ -33,7 +28,7 @@ namespace StaticSiteGenerator.src
                 Directory.CreateDirectory(websiteDirectory + "/posts");
                 Directory.CreateDirectory(websiteDirectory + "/pictures");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("An error has occured. Cannot create website directories.");
             }
@@ -41,8 +36,12 @@ namespace StaticSiteGenerator.src
 
         public static void CreateOutputDirectory()
         {
-
+            string dirName = new DirectoryInfo(Directory.GetCurrentDirectory()).Name;
+            if (Directory.Exists("website/posts") || (dirName == "website" && Directory.Exists("posts")))
+            {
+                Directory.CreateDirectory("FinishedSite");
+            }
         }
-        
+
     }
 }
