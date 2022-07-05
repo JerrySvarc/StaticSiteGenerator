@@ -7,7 +7,8 @@ namespace StaticSiteGenerator
     class Program
     {
         /// <summary>
-        /// The main entrypoint of the program. If no arguments are given to the program the generator will create the correct directories.If the argument "compile" is given, the generator will
+        /// The main entrypoint of the program. If no arguments are given to the program the generator will create the correct directories and a config
+        /// file. If the argument "compile" is given, the generator will
         /// create the output directory compile all markdown files into HTML. 
         /// </summary>
         /// <param name="args"></param>
@@ -17,7 +18,7 @@ namespace StaticSiteGenerator
             {
                 case 0:
                     Generator configGenerator = new Generator();
-                    configGenerator.GenerateConfigFile();
+                    configGenerator.TemplateConfigFile();
                     DirectoryCreator.CreateTemplateDirectories();
                     break;
                 case 1:
