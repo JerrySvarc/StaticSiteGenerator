@@ -90,7 +90,9 @@ namespace StaticSiteGenerator
             }
         }
 
-
+        /// <summary>
+        /// Creates the configuration json file and adds the template config structure.
+        /// </summary>
         public void TemplateConfigFile()
         {
             if (GenerateConfigFile())
