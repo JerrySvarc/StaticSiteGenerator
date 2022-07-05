@@ -1,12 +1,23 @@
-﻿namespace StaticSiteGenerator.src
+﻿
+namespace StaticSiteGenerator
 {
+    /// <summary>
+    /// Class containing the Main method. 
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// The main entrypoint of the program. If no arguments are given to the program the generator will create the correct directories.If the argument "compile" is given, the generator will
+        /// create the output directory compile all markdown files into HTML. 
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             switch (args.Length)
             {
                 case 0:
+                    Generator configGenerator = new Generator();
+                    configGenerator.GenerateConfigFile();
                     DirectoryCreator.CreateTemplateDirectories();
                     break;
                 case 1:
@@ -20,7 +31,7 @@
                         var dirName = new DirectoryInfo(Directory.GetCurrentDirectory()).Name;
                         if (Directory.Exists("website/posts") || (dirName == "website" && Directory.Exists("posts")))
                         {
-                            IParser parser = new MarkdownParser();
+                            ICompiler parser = new MarkdownCompiler();
                             Generator generator = new Generator(parser);
                             generator.GenerateHTML();
                         }
@@ -40,5 +51,7 @@
         {
             Console.WriteLine();
         }
+
+
     }
 }

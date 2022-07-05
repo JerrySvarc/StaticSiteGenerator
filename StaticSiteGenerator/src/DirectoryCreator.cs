@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator.src
+﻿namespace StaticSiteGenerator
 {
     static class DirectoryCreator
     {

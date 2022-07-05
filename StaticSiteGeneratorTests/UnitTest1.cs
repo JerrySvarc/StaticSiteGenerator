@@ -1,11 +1,8 @@
 namespace StaticSiteGeneratorTests
 {
-    public class Tests
+    public class MarkdownParserTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
+        
 
         [Test]
         public void Test1()

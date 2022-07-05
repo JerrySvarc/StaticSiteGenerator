@@ -1,13 +1,19 @@
-﻿namespace StaticSiteGenerator.src
+﻿using StaticSiteGenerator;
+
+namespace StaticSiteGenerator
 {
     internal class Generator
     {
-        IParser Parser { get; set; }
-        public Generator(IParser parser)
+        ICompiler Compiler { get; set; }
+        public Generator(ICompiler compiler)
         {
-            Parser = parser;
+            Compiler = compiler;
         }
 
+        public Generator()
+        {
+            Compiler = null;
+        }
         public void GenerateHTML()
         {
             string[] posts = GetPostNames();
@@ -19,7 +25,7 @@
             {
                 foreach (var post in posts)
                 {
-                    Task parsingTask = new Task(() => Parser.ParseFile(post));
+                    Task parsingTask = new Task(() => Compiler.CompileFile(post));
                     parsingTask.Start();
                 }
             }
@@ -40,6 +46,31 @@
             {
                 return null;
             }
+        }
+
+        public void GenerateConfigFile()
+        {
+            string dirName = new DirectoryInfo(Directory.GetCurrentDirectory()).Name;
+            try
+            {
+                if (Directory.Exists("website/posts"))
+                {
+                    File.Create("website/config.json");
+                }
+                else if (dirName == "website" && Directory.Exists("posts"))
+                {
+                    File.Create("config.json");
+                }
+                else
+                {
+                    Console.WriteLine("Config file could not be created. Wrong directory structure.");
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Config file could not be created.");
+            }
+           
         }
     }
 }
