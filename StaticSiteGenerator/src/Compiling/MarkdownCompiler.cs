@@ -1,6 +1,4 @@
 ﻿using StaticSiteGenerator.src.Compiling.Parser;
-using System;
-using System.IO;
 namespace StaticSiteGenerator
 {
     sealed class MarkdownCompiler : ICompiler

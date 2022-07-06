@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticSiteGenerator
+﻿namespace StaticSiteGenerator
 {
     internal class Token : IToken
     {
@@ -20,6 +13,6 @@ namespace StaticSiteGenerator
         public static Token TokenFactory(TokenType Type, string Value)
         {
             return new Token(Type, Value);
-        } 
+        }
     }
 }

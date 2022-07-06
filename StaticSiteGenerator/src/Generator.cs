@@ -1,7 +1,4 @@
-﻿using StaticSiteGenerator;
-
-
-namespace StaticSiteGenerator
+﻿namespace StaticSiteGenerator
 {
     internal class Generator : IGenerator
     {
@@ -32,7 +29,7 @@ namespace StaticSiteGenerator
             {
                 foreach (var post in posts)
                 {
-                     Compiler.CompileFile(post);
+                    Compiler.CompileFile(post);
                 }
             }
         }

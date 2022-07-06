@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace StaticSiteGenerator
 {
@@ -13,7 +9,7 @@ namespace StaticSiteGenerator
             StringBuilder sb = new StringBuilder();
             foreach (char character in text)
             {
-                if(SpecialCharScanner.ScanChar(character.ToString()) != null)
+                if (SpecialCharScanner.ScanChar(character.ToString()) != null)
                 {
                     return Token.TokenFactory(TokenType.TEXT, sb.ToString());
                 }
@@ -94,17 +90,12 @@ namespace StaticSiteGenerator
         {
             List<IToken> tokens = new List<IToken>();
             tokens = TokensToList(text, tokens);
-            foreach (IToken token in tokens)
-            {
-                Console.WriteLine(((Token)token).Type);
-            }
-            
             return new TokenList(tokens);
         }
 
         List<IToken> TokensToList(string text, List<IToken> tokens)
         {
-            if ( text.Length == 0 || text == null )
+            if (text.Length == 0 || text == null)
             {
                 tokens.Add(Token.TokenFactory(TokenType.EOF, null));
             }
@@ -115,13 +106,13 @@ namespace StaticSiteGenerator
                 List<IToken> remainingTokens = null;
                 if (((Token)token).Value != null)
                 {
-                        remainingTokens = TokensToList(text[(((Token)token).Value.Length)..], tokens);
+                    remainingTokens = TokensToList(text[(((Token)token).Value.Length)..], tokens);
                 }
                 else
                 {
                     remainingTokens = TokensToList(text[1..], tokens);
                 }
-                
+
             }
             return tokens;
         }
