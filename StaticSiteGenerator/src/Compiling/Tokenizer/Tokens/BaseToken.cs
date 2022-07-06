@@ -7,14 +7,19 @@ using System.Threading.Tasks;
 
 namespace StaticSiteGenerator
 {
-    internal class BaseToken : IToken
+    internal class Token : IToken
     {
-        TokenType Type { get; set; }
+        public TokenType Type { get; init; }
         public string Value { get; init; }
-        public BaseToken(TokenType type, string value)
+        public Token(TokenType type, string value)
         {
             Type = type;
             Value = value;
         }
+
+        public static Token TokenFactory(TokenType Type, string Value)
+        {
+            return new Token(Type, Value);
+        } 
     }
 }

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StaticSiteGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "compile"
+    }
+  }
+}

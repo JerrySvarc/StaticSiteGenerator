@@ -32,8 +32,7 @@ namespace StaticSiteGenerator
             {
                 foreach (var post in posts)
                 {
-                    Task parsingTask = new Task(() => Compiler.CompileFile(post));
-                    parsingTask.Start();
+                     Compiler.CompileFile(post);
                 }
             }
         }

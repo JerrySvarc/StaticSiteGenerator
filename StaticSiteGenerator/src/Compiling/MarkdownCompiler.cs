@@ -5,14 +5,13 @@ namespace StaticSiteGenerator
 {
     sealed class MarkdownCompiler : ICompiler
     {
-        //TODO: Implement the compiler
         public void CompileFile(string name)
         {
             string text = null;
             ITokenizer tokenizer = new Tokenizer();
-            TokenList tokens = new TokenList();
+            TokenList tokens;
             IParser parser = new Parser();
-            using (StreamReader reader = new StreamReader("website/config.json"))
+            using (StreamReader reader = new StreamReader(name))
             {
                 text = reader.ReadToEnd();
             }
