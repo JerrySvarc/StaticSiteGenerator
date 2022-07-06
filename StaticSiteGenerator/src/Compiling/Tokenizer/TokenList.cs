@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace StaticSiteGenerator
 {
-    internal class Parser
+    internal class TokenList
     {
+        int Index { get; set; }
+        List<IToken> Tokens { get; set; }
+
+        //TODO: implement TokenList
+
     }
 }
