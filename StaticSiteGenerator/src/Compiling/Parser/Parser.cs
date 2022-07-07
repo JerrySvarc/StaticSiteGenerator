@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator.src.Compiling.Parser
+﻿namespace StaticSiteGenerator
 {
     internal class Parser : IParser
     {

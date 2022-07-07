@@ -1,4 +1,4 @@
-﻿using StaticSiteGenerator.src.Compiling.Parser;
+﻿
 namespace StaticSiteGenerator
 {
     sealed class MarkdownCompiler : ICompiler
@@ -14,7 +14,10 @@ namespace StaticSiteGenerator
                 text = reader.ReadToEnd();
             }
             tokens = tokenizer.Tokenize(text);
-            parser.Match(tokens);
+            if (tokens != null)
+            {
+                parser.Match(tokens);
+            }
         }
     }
 }

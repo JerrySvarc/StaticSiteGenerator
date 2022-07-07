@@ -1,6 +1,6 @@
 ﻿namespace StaticSiteGenerator
 {
-    internal class TokenList
+    public sealed class TokenList
     {
         int Index { get; set; }
         List<IToken> Tokens { get; set; }
@@ -22,5 +22,9 @@
             Tokens.Add(token);
         }
 
+        public int Count()
+        {
+            return Tokens.Count;
+        }
     }
 }

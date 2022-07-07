@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator.src.Compiling.Parser
+﻿namespace StaticSiteGenerator
 {
     /// <summary>
     /// Must represent a parser with a corresponding tokenizer.

@@ -84,18 +84,34 @@ namespace StaticSiteGenerator
         EOF                     // end of file
     }
 
-    internal class Tokenizer : ITokenizer
+    public class Tokenizer : ITokenizer
     {
         public TokenList Tokenize(string text)
         {
             List<IToken> tokens = new List<IToken>();
-            tokens = TokensToList(text, tokens);
-            return new TokenList(tokens);
+            try
+            {
+                if (text != null)
+                {
+                    tokens = TokensToList(text, tokens);
+                    return new TokenList(tokens);
+                }
+                else
+                {
+                    return null;
+
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("An error has occured while tokenizing.");
+                return null;
+            }
         }
 
         List<IToken> TokensToList(string text, List<IToken> tokens)
         {
-            if (text.Length == 0 || text == null)
+            if (text.Length == 0)
             {
                 tokens.Add(Token.TokenFactory(TokenType.EOF, null));
             }
