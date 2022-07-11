@@ -19,14 +19,24 @@
         LINK
     }
 
-    internal class Parser
+    sealed class Parser
     {
         //TODO:implement Parser
+        List<IToken> Tokens { get; init; }
 
-        public BodyNode Parse(List<IToken> tokens)
+        private Parser(List<IToken> tokens)
         {
-
+            Tokens = tokens;
         }
-        
+
+        public Parser ParserFactory(List<IToken> tokens)
+        {
+            return new Parser(tokens);
+        }
+        public BodyNode GetRoot()
+        {
+            BodyParser bodyParser = new BodyParser();
+            return bodyParser.Parse(Tokens);
+        }
     }
 }

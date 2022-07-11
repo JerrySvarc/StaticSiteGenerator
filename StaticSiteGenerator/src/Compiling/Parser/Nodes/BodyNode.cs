@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StaticSiteGenerator
 {
-    internal class BodyNode : INode
+    class BodyNode : INode
     {
         List<ParagraphNode> Paragraphs { get; init; }
         int Consumed { get; init; }

@@ -17,8 +17,8 @@ namespace StaticSiteGenerator
             switch (args.Length)
             {
                 case 0:
-                    Generator configGenerator = new Generator();
-                    configGenerator.TemplateConfigFile();
+                    Creator configCreator = new Creator();
+                    configCreator.TemplateConfigFile();
                     DirectoryCreator.CreateTemplateDirectories();
                     break;
                 case 1:
@@ -33,7 +33,7 @@ namespace StaticSiteGenerator
                         if (Directory.Exists("website/posts") || (dirName == "website" && Directory.Exists("posts")))
                         {
                             ICompiler parser = new MarkdownCompiler();
-                            Generator generator = new Generator(parser);
+                            Creator generator = new Creator(parser);
                             generator.GenerateHTML();
                         }
                         else

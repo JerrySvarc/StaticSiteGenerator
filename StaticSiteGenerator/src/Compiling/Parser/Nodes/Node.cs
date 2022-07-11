@@ -8,14 +8,16 @@ namespace StaticSiteGenerator
 {
     class Node : INode
     {
-        NodeType Type { get; init; }
-        string Value { get; init; }
-        int Consumed { get;  init; }
+        public NodeType Type { get; init; }
+        public string Value { get; init; }
+        public int Consumed { get;  init; }
+        public string Name { get; set; }
         private Node(NodeType type, string value, int consumed)
         {
             Type = type;
             Value = value;
             Consumed = consumed;
+            Name = null;
         }
         public static Node NodeFactory(NodeType type, string value, int consumed)
         {

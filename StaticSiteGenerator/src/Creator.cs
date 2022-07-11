@@ -1,16 +1,16 @@
 ﻿namespace StaticSiteGenerator
 {
-    internal class Generator : IGenerator
+    internal class Creator : ICreator
     {
         private string TemplateConfigContent = "{\"Author\":\"John Doe\", \"WebsiteName\":\"A very nice website\"}";
         ICompiler Compiler { get; set; }
 
-        public Generator(ICompiler compiler)
+        public Creator(ICompiler compiler)
         {
             Compiler = compiler;
         }
 
-        public Generator()
+        public Creator()
         {
             Compiler = null;
         }

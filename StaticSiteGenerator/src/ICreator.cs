@@ -1,6 +1,6 @@
 ﻿namespace StaticSiteGenerator
 {
-    internal interface IGenerator
+    internal interface ICreator
     {
         public void GenerateHTML();
         public void TemplateConfigFile();

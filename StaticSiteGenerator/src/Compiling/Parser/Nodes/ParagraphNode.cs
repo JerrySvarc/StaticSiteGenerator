@@ -8,8 +8,8 @@ namespace StaticSiteGenerator
 {
     internal class ParagraphNode : INode
     {
-        List<Node> Sentences { get; init; }
-        int Consumed { get; init; }
+        public List<Node> Sentences { get; init; }
+        public int Consumed { get; init; }
 
         private ParagraphNode(List<Node> sentences, int consumed)
         {
