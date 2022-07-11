@@ -29,7 +29,7 @@
             Tokens = tokens;
         }
 
-        public Parser ParserFactory(List<IToken> tokens)
+        public static Parser ParserFactory(List<IToken> tokens)
         {
             return new Parser(tokens);
         }

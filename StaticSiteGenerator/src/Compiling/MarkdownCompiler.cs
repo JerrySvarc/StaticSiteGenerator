@@ -11,13 +11,14 @@ namespace StaticSiteGenerator
         {
             string text = null;
             ITokenizer tokenizer = new Tokenizer();
-            Parser parser = new Parser();
+            
             List<IToken> tokens;
             using (StreamReader reader = new StreamReader(name))
             {
                 text = reader.ReadToEnd();
             }
             tokens = tokenizer.Tokenize(text);
+            Parser parser = Parser.ParserFactory(tokens);
             if (tokens != null)
             {
                 //TODO:PARSER call
