@@ -11,8 +11,8 @@ namespace StaticSiteGenerator
         {
             string text = null;
             ITokenizer tokenizer = new Tokenizer();
-            IParser parser = new Parser();
-            TokenList tokens;
+            Parser parser = new Parser();
+            List<IToken> tokens;
             using (StreamReader reader = new StreamReader(name))
             {
                 text = reader.ReadToEnd();
@@ -20,7 +20,7 @@ namespace StaticSiteGenerator
             tokens = tokenizer.Tokenize(text);
             if (tokens != null)
             {
-                parser.Match(tokens);
+                //TODO:PARSER call
             }
         }
     }

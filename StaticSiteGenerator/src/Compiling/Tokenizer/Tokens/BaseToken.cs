@@ -4,7 +4,7 @@
     {
         public TokenType Type { get; init; }
         public string Value { get; init; }
-        public Token(TokenType type, string value)
+        private Token(TokenType type, string value)
         {
             Type = type;
             Value = value;

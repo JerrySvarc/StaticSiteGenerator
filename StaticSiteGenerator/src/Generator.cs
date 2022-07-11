@@ -87,7 +87,7 @@
         }
 
         /// <summary>
-        /// Creates the configuration json file and adds the template config structure.
+        /// Creates the configuration json file and adds the template config structure containing variables 'Name' and 'Author'.
         /// </summary>
         public void TemplateConfigFile()
         {

@@ -5,6 +5,6 @@
     /// </summary>
     internal interface ITokenizer
     {
-        TokenList Tokenize(string text);
+        List<IToken> Tokenize(string text);
     }
 }

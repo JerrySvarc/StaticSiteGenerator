@@ -100,8 +100,8 @@ namespace StaticSiteGenerator
         /// Tokenizes the markdown text. See the enum TokenType to see all the different possible tags.
         /// </summary>
         /// <param name="text">A makrdown text set to be Tokenized.</param>
-        /// <returns>A TokenList containing the found tokens. Will return null if the input text was null.</returns>
-        public TokenList Tokenize(string text)
+        /// <returns>A List of tokens containing the found tokens. Will return null if the input text was null.</returns>
+        public List<IToken> Tokenize(string text)
         {
             List<IToken> tokens = new List<IToken>();
             try
@@ -109,7 +109,7 @@ namespace StaticSiteGenerator
                 if (text != null)
                 {
                     tokens = TokensToList(text, tokens);
-                    return new TokenList(tokens);
+                    return tokens;
                 }
                 else
                 {
