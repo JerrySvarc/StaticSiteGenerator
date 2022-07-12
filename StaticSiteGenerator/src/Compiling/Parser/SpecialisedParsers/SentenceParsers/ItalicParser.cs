@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StaticSiteGenerator.src.Compiling.Parser.SpecialisedParsers.SentenceParsers
+namespace StaticSiteGenerator
 {
     internal class ItalicParser : ISentenceParser
     {

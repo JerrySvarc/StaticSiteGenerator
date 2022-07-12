@@ -5,6 +5,7 @@
     /// </summary>
     public enum NodeType
     {
+        TEXT,
         H1,
         H2,
         H3,

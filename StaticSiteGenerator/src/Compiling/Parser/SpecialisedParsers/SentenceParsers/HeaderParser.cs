@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StaticSiteGenerator.src.Compiling.Parser.SpecialisedParsers.SentenceParsers
+namespace StaticSiteGenerator
 {
     internal class HeaderParser : ISentenceParser
     {
         public Node Parse(List<IToken> tokens)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
