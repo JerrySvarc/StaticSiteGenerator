@@ -11,10 +11,10 @@ namespace StaticSiteGenerator
         public ParagraphNode Parse(List<IToken> tokens)
         {
             var parsers = new List<ISentencesParser>() { new SentencesNewlineParser(), new SentencesEOFParser() };
-            return MatchOneSentece(tokens, parsers);
+            return MatchOneParagraph(tokens, parsers);
         }
 
-        private ParagraphNode MatchOneSentece(List<IToken> tokens, List<ISentencesParser> parsers)
+        private ParagraphNode MatchOneParagraph(List<IToken> tokens, List<ISentencesParser> parsers)
         {
             foreach(var parser in parsers)
             {
