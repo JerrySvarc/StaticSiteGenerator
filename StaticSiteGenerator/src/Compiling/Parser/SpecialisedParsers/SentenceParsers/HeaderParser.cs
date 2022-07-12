@@ -16,6 +16,7 @@ namespace StaticSiteGenerator
             {
                 hashtagCount++;
             }
+
             if (tokens[hashtagCount].Type == TokenType.TEXT)
             {
                 switch (hashtagCount)
