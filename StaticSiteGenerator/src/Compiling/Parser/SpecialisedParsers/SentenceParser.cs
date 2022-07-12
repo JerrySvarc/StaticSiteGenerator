@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace StaticSiteGenerator
 {
-    internal class SentenceNewlineParser : ISentenceParser
+    internal class SentenceParser
     {
-        public ParagraphNode Parse(List<IToken> nodes)
+
+        public Node Parse(List<IToken> nodes)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
