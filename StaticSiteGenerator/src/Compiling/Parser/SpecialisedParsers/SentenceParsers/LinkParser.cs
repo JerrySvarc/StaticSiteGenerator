@@ -10,7 +10,7 @@
         {
             if (tokens.Count >= 5)
             {
-                if (SentenceParser.CheckTypes(tokens, LinkNoNameTemplate) )
+                if (SentenceParser.CheckTypes(tokens, LinkNoNameTemplate))
                 {
                     return Node.NodeFactory(NodeType.LINK, tokens[3].Value, 5);
                 }

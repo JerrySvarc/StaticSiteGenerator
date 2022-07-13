@@ -6,7 +6,7 @@
         {
             if (tokens.Count >= 1 && tokens[0].Type == TokenType.TEXT)
             {
-                
+
                 return Node.NodeFactory(NodeType.TEXT, tokens[0].Value, 1);
             }
             else if (tokens.Count >= 1)
@@ -14,7 +14,7 @@
                 switch (tokens[0].Type)
                 {
                     case TokenType.HASHTAG:
-                        return Node.NodeFactory(NodeType.TEXT,"#", 1) ;
+                        return Node.NodeFactory(NodeType.TEXT, "#", 1);
                         break;
                     case TokenType.UNDERSCORE:
                         return Node.NodeFactory(NodeType.TEXT, "_", 1);

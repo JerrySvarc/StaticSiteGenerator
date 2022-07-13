@@ -11,7 +11,7 @@
                  tokens[consumed].Type == TokenType.NEWLINE &&
                  tokens[consumed + 1].Type == TokenType.NEWLINE)
             {
-                 return ParagraphNode.ParagraphNodeFactory(sentences, consumed + 2);   
+                return ParagraphNode.ParagraphNodeFactory(sentences, consumed + 2);
             }
             return null;
         }
@@ -29,7 +29,7 @@
                 {
                     break;
                 }
-                if (sentence == null && subList[0].Type == TokenType.NEWLINE && subList[1].Type != TokenType.NEWLINE )
+                if (sentence == null && subList[0].Type == TokenType.NEWLINE && subList[1].Type != TokenType.NEWLINE)
                 {
                     consumed++;
                 }

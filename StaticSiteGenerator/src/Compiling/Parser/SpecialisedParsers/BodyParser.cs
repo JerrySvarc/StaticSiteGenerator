@@ -22,7 +22,7 @@
 
             while (true)
             {
-                var paragraphNode = paragraphParser.Parse(tokens.GetRange(consumed, tokens.Count-consumed));
+                var paragraphNode = paragraphParser.Parse(tokens.GetRange(consumed, tokens.Count - consumed));
                 if (paragraphNode == null)
                 {
                     break;
