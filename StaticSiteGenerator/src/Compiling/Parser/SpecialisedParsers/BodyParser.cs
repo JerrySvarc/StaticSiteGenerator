@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticSiteGenerator
+﻿namespace StaticSiteGenerator
 {
-    class BodyParser 
+    class BodyParser
     {
         public BodyNode Parse(List<IToken> tokens)
         {
@@ -28,7 +22,7 @@ namespace StaticSiteGenerator
 
             while (true)
             {
-                var paragraphNode = paragraphParser.Parse(tokens.GetRange(consumed,tokens.Count));
+                var paragraphNode = paragraphParser.Parse(tokens.GetRange(consumed, tokens.Count-consumed));
                 if (paragraphNode == null)
                 {
                     break;

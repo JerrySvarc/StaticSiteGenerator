@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticSiteGenerator
+﻿namespace StaticSiteGenerator
 {
     class BodyNode : INode
     {
-        List<ParagraphNode> Paragraphs { get; init; }
-        int Consumed { get; init; }
+        public List<ParagraphNode> Paragraphs { get; init; }
+        public int Consumed { get; init; }
 
         private BodyNode(List<ParagraphNode> paragraphs, int consumed)
         {

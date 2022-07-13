@@ -68,6 +68,9 @@ namespace StaticSiteGenerator
                 case ')':
                     return Token.TokenFactory(TokenType.RIGHTBRACKET, null);
                     break;
+                case '`':
+                    return Token.TokenFactory(TokenType.BACKTICK, null);
+                    break;
                 default:
                     return null;
                     break;
@@ -91,6 +94,7 @@ namespace StaticSiteGenerator
         RIGHTSQUAREBRACKET,     //]
         LEFTBRACKET,            //(
         RIGHTBRACKET,           //)
+        BACKTICK,
         EOF                     // end of file
     }
 

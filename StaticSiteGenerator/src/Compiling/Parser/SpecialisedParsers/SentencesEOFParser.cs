@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticSiteGenerator
+﻿namespace StaticSiteGenerator
 {
     internal class SentencesEOFParser : ISentencesParser
     {
@@ -30,20 +24,33 @@ namespace StaticSiteGenerator
             }
         }
 
-        public void MatchAllSentences(List<IToken> tokens, SentenceParser sentenceParser, out List<Node> sentences, out int consumed)
+        private void MatchAllSentences(List<IToken> tokens, SentenceParser sentenceParser, out List<Node> sentences, out int consumed)
         {
             sentences = new List<Node>();
             consumed = 0;
 
             while (true)
             {
-                var sentence = sentenceParser.Parse(tokens.GetRange(consumed, tokens.Count));
-                if (sentence == null)
+                var subList = tokens.GetRange(consumed, tokens.Count - consumed);
+                var sentence = sentenceParser.Parse(subList);
+                if (subList.Count <= 0 || (subList.Count == 1 && subList[0].Type == TokenType.EOF))
                 {
                     break;
                 }
-                sentences.Add(sentence);
-                consumed += sentence.Consumed;
+                if (sentence == null && subList[0].Type == TokenType.NEWLINE && subList[1].Type != TokenType.NEWLINE)
+                {
+                    consumed++;
+                }
+                else if (sentence != null)
+                {
+                    sentences.Add(sentence);
+                    consumed += sentence.Consumed;
+                }
+                else
+                {
+                    break;
+                }
+
             }
         }
     }

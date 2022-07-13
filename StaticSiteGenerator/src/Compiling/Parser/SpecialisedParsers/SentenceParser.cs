@@ -1,26 +1,19 @@
-﻿using StaticSiteGenerator.src.Compiling.Parser.SpecialisedParsers.SentenceParsers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticSiteGenerator
+﻿namespace StaticSiteGenerator
 {
     internal class SentenceParser
     {
         List<ISentenceParser> SentenceParsers;
         public SentenceParser()
         {
-            SentenceParsers = new List<ISentenceParser>() { };
+            SentenceParsers = new List<ISentenceParser>() { new ImageParser(), new LinkParser(), new ItalicParser(), new BoldParser(), new CodeParser(), new ListParser(), new HeaderParser(), new TextParser() };
         }
 
         public Node Parse(List<IToken> tokens)
         {
-            return MatchOneSentece(tokens, SentenceParsers);
+            return MatchOneSentence(tokens, SentenceParsers);
         }
 
-        private Node MatchOneSentece(List<IToken> tokens, List<ISentenceParser> parsers)
+        private Node MatchOneSentence(List<IToken> tokens, List<ISentenceParser> parsers)
         {
             foreach (var parser in parsers)
             {
@@ -31,6 +24,17 @@ namespace StaticSiteGenerator
                 }
             }
             return null;
+        }
+        public static bool CheckTypes(List<IToken> tokens, List<TokenType> template)
+        {
+            for (int i = 0; i < template.Count; i++)
+            {
+                if (tokens[i].Type != template[i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

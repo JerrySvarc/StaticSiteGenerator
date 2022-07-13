@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticSiteGenerator
+﻿namespace StaticSiteGenerator
 {
     internal class ListParser : ISentenceParser
     {
         public Node Parse(List<IToken> tokens)
         {
-            throw new NotImplementedException();
+            if (tokens.Count >= 2)
+            {
+                if (tokens[0].Type == TokenType.PLUS && tokens[1].Type == TokenType.TEXT && tokens[2].Type == TokenType.NEWLINE)
+                {
+                    return Node.NodeFactory(NodeType.LIST, tokens[1].Value, 2);
+                }
+            }
+            return null;
         }
     }
 }
- 
