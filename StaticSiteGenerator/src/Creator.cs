@@ -3,9 +3,9 @@
     internal class Creator : ICreator
     {
         private string TemplateConfigContent = "{\"Author\":\"John Doe\", \"WebsiteName\":\"A very nice website\"}";
-        ICompiler Compiler { get; set; }
+        MarkdownCompiler Compiler { get; set; }
 
-        public Creator(ICompiler compiler)
+        public Creator(MarkdownCompiler compiler)
         {
             Compiler = compiler;
         }

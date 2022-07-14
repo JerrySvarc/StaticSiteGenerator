@@ -32,8 +32,8 @@ namespace StaticSiteGenerator
                         var dirName = new DirectoryInfo(Directory.GetCurrentDirectory()).Name;
                         if (Directory.Exists("website/posts") || (dirName == "website" && Directory.Exists("posts")))
                         {
-                            MarkdownCompiler parser = new MarkdownCompiler();
-                            Creator generator = new Creator(parser);
+                            MarkdownCompiler compiler = new MarkdownCompiler();
+                            Creator generator = new Creator(compiler);
                             generator.GenerateHTML();
                         }
                         else
