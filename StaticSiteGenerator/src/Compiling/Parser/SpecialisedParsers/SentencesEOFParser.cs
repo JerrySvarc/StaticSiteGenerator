@@ -1,7 +1,15 @@
 ﻿namespace StaticSiteGenerator
 {
+    /// <summary>
+    /// A paprser specialised to recognise a sentences followed by the End of File character.  
+    /// </summary>
     internal class SentencesEOFParser : ISentencesParser
     {
+        /// <summary>
+        /// Parses the given tokens. Tries to find all sentences which are part of a paragraph in the tokens. 
+        /// </summary>
+        /// <param name="tokens">A list of tokens.</param>
+        /// <returns>Null if no paragraph was found or a ParagraphNode.</returns>
         public ParagraphNode Parse(List<IToken> tokens)
         {
             List<Node> sentences;
@@ -24,6 +32,13 @@
             }
         }
 
+        /// <summary>
+        /// Tries to find all sentences which make up a paragraph.
+        /// </summary>
+        /// <param name="tokens">A list of tokens.</param>
+        /// <param name="sentenceParser">A sentence parser.</param>
+        /// <param name="sentences">Found sentences.</param>
+        /// <param name="consumed">How many tokens have been consumed.</param>
         private void MatchAllSentences(List<IToken> tokens, SentenceParser sentenceParser, out List<Node> sentences, out int consumed)
         {
             sentences = new List<Node>();

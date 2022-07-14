@@ -1,7 +1,15 @@
 ﻿namespace StaticSiteGenerator
 {
+    /// <summary>
+    /// A paprser specialised to recognise a token patter representing plain text. 
+    /// </summary>
     internal class TextParser : ISentenceParser
     {
+        /// <summary>
+        /// Parses tokens and looks for a pattern representing plain text. 
+        /// </summary>
+        /// <param name="tokens">A list of tokens.</param>
+        /// <returns>Null if no sequence was found or a node containing the text.</returns>
         public Node Parse(List<IToken> tokens)
         {
             if (tokens.Count >= 1 && tokens[0].Type == TokenType.TEXT)

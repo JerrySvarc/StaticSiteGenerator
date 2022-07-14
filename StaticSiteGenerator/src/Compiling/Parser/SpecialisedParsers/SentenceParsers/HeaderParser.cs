@@ -1,7 +1,15 @@
 ﻿namespace StaticSiteGenerator
 {
+    /// <summary>
+    /// A paprser specialised to recognise a token patter representing a header. 
+    /// </summary>
     internal class HeaderParser : ISentenceParser
     {
+        /// <summary>
+        /// Parses tokens and looks for a pattern representing a header. 
+        /// </summary>
+        /// <param name="tokens">A list of tokens.</param>
+        /// <returns>Null if no sequence was found or a node containing the text which should be coded.</returns>
         public Node Parse(List<IToken> tokens)
         {
             int hashtagCount = 0;

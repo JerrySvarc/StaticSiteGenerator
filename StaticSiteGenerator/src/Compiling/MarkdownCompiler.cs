@@ -28,6 +28,7 @@ namespace StaticSiteGenerator
             {
                 throw new ApplicationException();
             }
+
         }
     }
 }

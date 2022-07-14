@@ -1,13 +1,26 @@
 ﻿namespace StaticSiteGenerator
 {
+    /// <summary>
+    /// A paprser specialised to recognise a paragraph node from the list of tokens. 
+    /// </summary>
     class ParagraphParser
     {
+        /// <summary>
+        /// Parses the given tokens. Tries to find a paragraph in the tokens. 
+        /// </summary>
+        /// <param name="tokens">A list of tokens to be parsed.</param>
+        /// <returns>Null if no sequence was found or a ParagraphNode containing sentences.</returns>
         public ParagraphNode Parse(List<IToken> tokens)
         {
             var parsers = new List<ISentencesParser>() { new SentencesNewlineParser(), new SentencesEOFParser() };
             return MatchOneParagraph(tokens, parsers);
         }
-
+        /// <summary>
+        /// Matches one paragraph from the tokens. Tries different sentence parsers until a pararaph is found.
+        /// </summary>
+        /// <param name="tokens">A list of tokens.</param>
+        /// <param name="parsers">Parser which parse the tokens until a match is found.</param>
+        /// <returns>Null if no match was found or a ParagraphNode.</returns>
         private ParagraphNode MatchOneParagraph(List<IToken> tokens, List<ISentencesParser> parsers)
         {
             foreach (var parser in parsers)
