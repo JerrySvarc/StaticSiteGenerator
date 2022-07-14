@@ -3,7 +3,7 @@
     /// <summary>
     /// A node representing the body of the file. Contains all paragraphs.
     /// </summary>
-    class BodyNode : INode
+    public class BodyNode : INode
     {
         public List<ParagraphNode> Paragraphs { get; init; }
         public int Consumed { get; init; }

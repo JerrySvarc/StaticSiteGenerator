@@ -1,6 +1,6 @@
 ﻿namespace StaticSiteGenerator
 {
-    internal class Creator : ICreator
+    internal class Creator 
     {
         private string TemplateConfigContent = "{\"Author\":\"John Doe\", \"WebsiteName\":\"A very nice website\"}";
         MarkdownCompiler Compiler { get; set; }
@@ -18,7 +18,7 @@
         /// <summary>
         /// Generator will compile all markdown files inside the posts directory into html and put the inside the output directory.
         /// </summary>
-        public void GenerateHTML()
+        public async Task GenerateHTMLAsync(string logFile)
         {
             string[] posts = GetPostNames();
             if (posts == null || posts.Length == 0)
@@ -27,10 +27,12 @@
             }
             else
             {
+                List<Task<bool>> tasks = new List<Task<bool>>();
                 foreach (var post in posts)
                 {
-                    Compiler.CompileFile(post);
+                    tasks.Add(Compiler.CompileFileAsync(post, logFile));
                 }
+                await Task.WhenAll(tasks);
             }
         }
 

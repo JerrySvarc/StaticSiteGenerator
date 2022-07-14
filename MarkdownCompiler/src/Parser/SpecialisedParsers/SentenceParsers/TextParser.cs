@@ -10,14 +10,14 @@
         /// </summary>
         /// <param name="tokens">A list of tokens.</param>
         /// <returns>Null if no sequence was found or a node containing the text.</returns>
-        public Node Parse(List<IToken> tokens)
+        public Node Parse(IToken[] tokens)
         {
-            if (tokens.Count >= 1 && tokens[0].Type == TokenType.TEXT)
+            if (tokens.Length >= 1 && tokens[0].Type == TokenType.TEXT)
             {
 
                 return Node.NodeFactory(NodeType.TEXT, tokens[0].Value, 1);
             }
-            else if (tokens.Count >= 1)
+            else if (tokens.Length >= 1)
             {
                 switch (tokens[0].Type)
                 {

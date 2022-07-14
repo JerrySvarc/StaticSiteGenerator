@@ -22,11 +22,11 @@
 
     sealed class Parser
     {
-        List<IToken> Tokens { get; init; }
+        IToken[] Tokens { get; init; }
 
         private Parser(List<IToken> tokens)
         {
-            Tokens = tokens;
+            Tokens = tokens.ToArray();
         }
 
         public static Parser ParserFactory(List<IToken> tokens)

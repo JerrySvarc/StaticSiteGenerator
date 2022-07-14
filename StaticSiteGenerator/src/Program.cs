@@ -34,7 +34,8 @@ namespace StaticSiteGenerator
                         {
                             MarkdownCompiler compiler = new MarkdownCompiler();
                             Creator generator = new Creator(compiler);
-                            generator.GenerateHTML();
+                            File.Create("website/log.txt").Close();
+                            generator.GenerateHTMLAsync("website/log.txt").Wait();
                         }
                         else
                         {

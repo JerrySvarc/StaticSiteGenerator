@@ -12,9 +12,9 @@
         /// </summary>
         /// <param name="tokens">A list of tokens.</param>
         /// <returns>Null if no pattern was found. A node containing the text which should be bold.</returns>
-        public Node Parse(List<IToken> tokens)
+        public Node Parse(IToken[] tokens)
         {
-            if (tokens.Count >= 5)
+            if (tokens.Length >= 5)
             {
                 if (SentenceParser.CheckTypes(tokens, UnderscoreTemplate) || SentenceParser.CheckTypes(tokens, StarTemplate))
                 {

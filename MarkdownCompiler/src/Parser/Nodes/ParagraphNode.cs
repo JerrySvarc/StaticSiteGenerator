@@ -3,7 +3,7 @@
     /// <summary>
     /// A node representing a paragraph. Contains all sentences inside of the paragraph.
     /// </summary>
-    internal class ParagraphNode : INode
+    public class ParagraphNode : INode
     {
         public List<Node> Sentences { get; init; }
         public int Consumed { get; init; }

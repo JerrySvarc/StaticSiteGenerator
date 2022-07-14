@@ -10,17 +10,17 @@
         /// </summary>
         /// <param name="tokens">A list of tokens.</param>
         /// <returns>Null if no paragraph was found or a ParagraphNode.</returns>
-        public ParagraphNode Parse(List<IToken> tokens)
+        public ParagraphNode Parse(IToken[] tokens)
         {
             List<Node> sentences;
             int consumed;
             MatchAllSentences(tokens, new SentenceParser(), out sentences, out consumed);
-            if (tokens != null && (tokens.Count >= consumed + 1) &&
+            if (tokens != null && (tokens.Length >= consumed + 1) &&
                  tokens[consumed].Type == TokenType.EOF)
             {
                 return ParagraphNode.ParagraphNodeFactory(sentences, consumed + 1);
             }
-            else if (tokens != null && (tokens.Count >= consumed + 2) &&
+            else if (tokens != null && (tokens.Length >= consumed + 2) &&
                  tokens[consumed].Type == TokenType.NEWLINE &&
                  tokens[consumed + 1].Type == TokenType.EOF)
             {
@@ -39,16 +39,16 @@
         /// <param name="sentenceParser">A sentence parser.</param>
         /// <param name="sentences">Found sentences.</param>
         /// <param name="consumed">How many tokens have been consumed.</param>
-        private void MatchAllSentences(List<IToken> tokens, SentenceParser sentenceParser, out List<Node> sentences, out int consumed)
+        private void MatchAllSentences(IToken[] tokens, SentenceParser sentenceParser, out List<Node> sentences, out int consumed)
         {
             sentences = new List<Node>();
             consumed = 0;
 
             while (true)
             {
-                var subList = tokens.GetRange(consumed, tokens.Count - consumed);
+                var subList = tokens[consumed..];
                 var sentence = sentenceParser.Parse(subList);
-                if (subList.Count <= 0 || (subList.Count == 1 && subList[0].Type == TokenType.EOF))
+                if (subList.Length <= 0 || (subList.Length == 1 && subList[0].Type == TokenType.EOF))
                 {
                     break;
                 }

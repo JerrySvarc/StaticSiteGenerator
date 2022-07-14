@@ -10,6 +10,6 @@
         /// </summary>
         /// <param name="tokens">A list of tokens to be parser.</param>
         /// <returns>Null if no acceptable pattern was found.</returns>
-        public Node Parse(List<IToken> tokens);
+        public Node Parse(IToken[] tokens);
     }
 }

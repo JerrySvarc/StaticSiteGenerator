@@ -5,6 +5,6 @@
     /// </summary>
     internal interface ISentencesParser
     {
-        public ParagraphNode Parse(List<IToken> nodes);
+        public ParagraphNode Parse(IToken[] tokens);
     }
 }

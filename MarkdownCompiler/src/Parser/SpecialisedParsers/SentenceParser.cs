@@ -5,19 +5,17 @@
     /// </summary>
     internal class SentenceParser
     {
-        List<ISentenceParser> SentenceParsers;
-        public SentenceParser()
-        {
-            SentenceParsers = new List<ISentenceParser>() { new ImageParser(), new LinkParser(), new ItalicParser(), new BoldParser(), new CodeParser(), new ListParser(), new HeaderParser(), new TextParser() };
-        }
+        ISentenceParser[] SentenceParsers = new ISentenceParser[] { new ImageParser(), new LinkParser(), new ItalicParser(), new BoldParser(), 
+            new CodeParser(), new ListParser(), new HeaderParser(), new TextParser() };
+        
 
         /// <summary>
         /// Parses the given tokens. Tries to find a sentence in the tokens. 
         /// </summary>
         /// <param name="tokens">A list of tokens to be parsed.</param>
         /// <returns>Null if no sequence was found or a Node representing sentence.</returns>
-        public Node Parse(List<IToken> tokens)
-        {
+        public Node Parse(IToken[]tokens)
+        {   
             return MatchOneSentence(tokens, SentenceParsers);
         }
 
@@ -27,7 +25,7 @@
         /// <param name="tokens">A list of tokens.</param>
         /// <param name="parsers">Parser which parse the tokens until a match is found./param>
         /// <returns>Null if no match was found or a Node.</returns>
-        private Node MatchOneSentence(List<IToken> tokens, List<ISentenceParser> parsers)
+        private Node MatchOneSentence(IToken[] tokens, ISentenceParser[] parsers)
         {
             foreach (var parser in parsers)
             {
@@ -46,7 +44,7 @@
         /// <param name="tokens">Tokens to be checked.</param>
         /// <param name="template">A template list.</param>
         /// <returns>False if the two lists differ or true if a match is found.</returns>
-        public static bool CheckTypes(List<IToken> tokens, List<TokenType> template)
+        public static bool CheckTypes(IToken[] tokens, List<TokenType> template)
         {
             for (int i = 0; i < template.Count; i++)
             {

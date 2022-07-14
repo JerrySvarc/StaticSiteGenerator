@@ -14,7 +14,7 @@ namespace StaticSiteGenerator
             StringBuilder sb = new StringBuilder();
             foreach (char character in text)
             {
-                if (SpecialCharScanner.ScanChar(character.ToString()) != null)
+                if (SpecialCharScanner.ScanChar(character) != null)
                 {
                     return Token.TokenFactory(TokenType.TEXT, sb.ToString());
                 }
@@ -34,9 +34,9 @@ namespace StaticSiteGenerator
         /// </summary>
         /// <param name="text">Markdown text</param>
         /// <returns>Will return a tag of a special type. Will return null if no special tag is assigned.</returns>
-        public static IToken ScanChar(string text)
+        public static IToken ScanChar(char character)
         {
-            switch (text[0])
+            switch (character)
             {
                 case '#':
                     return Token.TokenFactory(TokenType.HASHTAG, null);
@@ -103,7 +103,7 @@ namespace StaticSiteGenerator
         /// <summary>
         /// Tokenizes the markdown text. See the enum TokenType to see all the different possible tags.
         /// </summary>
-        /// <param name="text">A makrdown text set to be Tokenized.</param>
+        /// <param name="text">A markdown text set to be Tokenized.</param>
         /// <returns>A List of tokens containing the found tokens. Will return null if the input text was null.</returns>
         public List<IToken> Tokenize(string text)
         {
@@ -138,7 +138,7 @@ namespace StaticSiteGenerator
         {
             if (text.Length == 0)
             {
-                tokens.Add(Token.TokenFactory(TokenType.EOF, null));
+                tokens.Add(Token.TokenFactory(TokenType.NEWLINE, null));
             }
             else
             {
@@ -157,15 +157,15 @@ namespace StaticSiteGenerator
             }
             return tokens;
         }
-
+       
         /// <summary>
         /// Create a token from a singe character or a text token from multiple characters.
         /// </summary>
-        /// <param name="text">markdown text</param>
+        /// <param name="text">Markdown text.</param>
         /// <returns>A single token.</returns>
         IToken CreateToken(string text)
         {
-            var token = SpecialCharScanner.ScanChar(text);
+            var token = SpecialCharScanner.ScanChar(text[0]);
             if (token != null)
             {
                 return token;

@@ -12,9 +12,9 @@
         /// </summary>
         /// <param name="tokens">A list of tokens.</param>
         /// <returns>Null if no sequence was found or a node containing the text which should be coded.</returns>
-        public Node Parse(List<IToken> tokens)
+        public Node Parse(IToken[] tokens)
         {
-            if (tokens.Count >= 3)
+            if (tokens.Length >= 3)
             {
                 if (SentenceParser.CheckTypes(tokens, BacktickTemplate))
                 {

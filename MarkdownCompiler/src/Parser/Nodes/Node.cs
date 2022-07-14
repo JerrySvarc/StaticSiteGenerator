@@ -3,7 +3,7 @@
     /// <summary>
     /// A node representing a sentence in the grammar.
     /// </summary>
-    class Node : INode
+    public class Node : INode
     {
         public NodeType Type { get; init; }
         public string Value { get; init; }
