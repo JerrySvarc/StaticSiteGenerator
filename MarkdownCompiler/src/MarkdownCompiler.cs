@@ -1,7 +1,7 @@
 ﻿
 namespace StaticSiteGenerator
 {
-    sealed class MarkdownCompiler : ICompiler
+    public sealed class MarkdownCompiler : ICompiler
     {
         /// <summary>
         /// Tokenizes and parses a Markdown text and generates an HTML file in the 'output' directory.
