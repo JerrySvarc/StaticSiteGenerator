@@ -20,27 +20,22 @@
         LINK
     }
 
-    sealed class Parser
-    {
-        IToken[] Tokens { get; init; }
-
-        private Parser(List<IToken> tokens)
+    static class Parser
+    { 
+        public static IEnumerable<ParagraphNode> GetAllParagraphs(IToken[] tokens)
         {
-            Tokens = tokens.ToArray();
-        }
-
-        public static Parser ParserFactory(List<IToken> tokens)
-        {
-            return new Parser(tokens);
-        }
-        /// <summary>
-        /// Creates a new body parser and parses the tokens given to the parser.
-        /// </summary>
-        /// <returns>A root node of the abstract syntax tree.</returns>
-        public BodyNode GetRoot()
-        {
-            BodyParser bodyParser = new BodyParser();
-            return bodyParser.Parse(Tokens);
+            int consumed = 0;
+            ParagraphParser paragraphParser = new ParagraphParser();
+            while (true)
+            {
+                var paragraphNode = paragraphParser.Parse(tokens[consumed..]);
+                if (paragraphNode == null)
+                {
+                    break;
+                }
+                consumed += paragraphNode.Consumed;
+                yield return paragraphNode;
+            }
         }
     }
 }

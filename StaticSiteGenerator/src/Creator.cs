@@ -18,7 +18,7 @@
         /// <summary>
         /// Generator will compile all markdown files inside the posts directory into html and put the inside the output directory.
         /// </summary>
-        public async Task GenerateHTMLAsync(string logFile)
+        public async Task GenerateHTMLAsync()
         {
             string[] posts = GetPostNames();
             if (posts == null || posts.Length == 0)
@@ -30,7 +30,7 @@
                 List<Task<bool>> tasks = new List<Task<bool>>();
                 foreach (var post in posts)
                 {
-                    tasks.Add(Compiler.CompileFileAsync(post, logFile));
+                    tasks.Add(Compiler.CompileFileAsync(post));
                 }
                 await Task.WhenAll(tasks);
             }

@@ -12,7 +12,7 @@ namespace StaticSiteGenerator
         /// create the output directory compile all markdown files into HTML. 
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             switch (args.Length)
             {
@@ -34,8 +34,7 @@ namespace StaticSiteGenerator
                         {
                             MarkdownCompiler compiler = new MarkdownCompiler();
                             Creator generator = new Creator(compiler);
-                            File.Create("website/log.txt").Close();
-                            generator.GenerateHTMLAsync("website/log.txt").Wait();
+                            await generator.GenerateHTMLAsync();
                         }
                         else
                         {
