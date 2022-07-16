@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator
+﻿namespace MarkdownCompiler
 {
     /// <summary>
     /// Represents a parser which parses sentences of tokens. Sentence can be for example a bold text, normal text, link, etc.

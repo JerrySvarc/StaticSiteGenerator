@@ -1,4 +1,4 @@
-﻿
+﻿using MarkdownCompiler;
 namespace StaticSiteGenerator
 {
     /// <summary>
@@ -17,9 +17,9 @@ namespace StaticSiteGenerator
             switch (args.Length)
             {
                 case 0:
-                    Creator configCreator = new Creator();
-                    configCreator.TemplateConfigFile();
                     DirectoryCreator.CreateTemplateDirectories();
+                    Console.WriteLine("Necessary directories have been created. Please put your .md files into the \'posts\' directory and your pictures into the \'pictures\' directory.\n" +
+                        "Your markdown files will be compiled into the \'output\' directory. ");
                     break;
                 case 1:
                     if (args[0].ToLower() != "compile")
@@ -30,15 +30,23 @@ namespace StaticSiteGenerator
                     else
                     {
                         var dirName = new DirectoryInfo(Directory.GetCurrentDirectory()).Name;
-                        if (Directory.Exists("website/posts") || (dirName == "website" && Directory.Exists("posts")))
+                        Compiler compiler;
+                        Creator creator;
+                        if (Directory.Exists("website/posts"))
                         {
-                            MarkdownCompiler compiler = new MarkdownCompiler();
-                            Creator generator = new Creator(compiler);
-                            await generator.GenerateHTMLAsync();
+                            compiler = new Compiler(false);
+                            creator = new Creator(compiler);
+                            await creator.GenerateHTMLAsync();
+                        }
+                        else if (dirName == "website" && Directory.Exists("posts"))
+                        {
+                            compiler = new Compiler(true);
+                            creator = new Creator(compiler);
+                            await creator.GenerateHTMLAsync();
                         }
                         else
                         {
-                            Console.WriteLine("Wrong directory structure. Please run the static site generator without any arguments.");
+                            Console.WriteLine("Could not find the \"posts\" directory.");
                         }
                     }
                     break;
@@ -52,7 +60,5 @@ namespace StaticSiteGenerator
         {
             Console.WriteLine();
         }
-
-
     }
 }

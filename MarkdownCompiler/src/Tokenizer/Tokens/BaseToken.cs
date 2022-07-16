@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator
+﻿namespace MarkdownCompiler
 {
     internal class Token : IToken
     {

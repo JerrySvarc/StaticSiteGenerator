@@ -1,4 +1,4 @@
-using StaticSiteGenerator;
+using MarkdownCompiler;
 namespace StaticSiteGeneratorTests
 {
     public class TokenizerTests

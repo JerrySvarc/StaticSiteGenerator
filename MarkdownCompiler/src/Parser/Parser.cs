@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator
+﻿namespace MarkdownCompiler
 {
     /// <summary>
     /// Different types of nodes. 
@@ -20,8 +20,8 @@
         LINK
     }
 
-    static class Parser
-    { 
+    internal static class Parser
+    {
         public static IEnumerable<ParagraphNode> GetAllParagraphs(IToken[] tokens)
         {
             int consumed = 0;

@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator
+﻿namespace MarkdownCompiler
 {
     /// <summary>
     /// A node representing a paragraph. Contains all sentences inside of the paragraph.

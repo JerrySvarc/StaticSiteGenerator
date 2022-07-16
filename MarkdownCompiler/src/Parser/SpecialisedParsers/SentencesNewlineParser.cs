@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator
+﻿namespace MarkdownCompiler
 {
     /// <summary>
     /// A paprser specialised to recognise a sentences followed by an empty line.  

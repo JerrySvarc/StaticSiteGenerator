@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace StaticSiteGenerator
+namespace MarkdownCompiler
 {
     static class TextScanner
     {
@@ -157,7 +157,7 @@ namespace StaticSiteGenerator
             }
             return tokens;
         }
-       
+
         /// <summary>
         /// Create a token from a singe character or a text token from multiple characters.
         /// </summary>

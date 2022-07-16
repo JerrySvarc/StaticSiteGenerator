@@ -1,21 +1,21 @@
-﻿namespace StaticSiteGenerator
+﻿namespace MarkdownCompiler
 {
     /// <summary>
     /// A paprser specialised to recognise a sentence node from the list of tokens. 
     /// </summary>
     internal class SentenceParser
     {
-        ISentenceParser[] SentenceParsers = new ISentenceParser[] { new ImageParser(), new LinkParser(), new ItalicParser(), new BoldParser(), 
+        ISentenceParser[] SentenceParsers = new ISentenceParser[] { new ImageParser(), new LinkParser(), new ItalicParser(), new BoldParser(),
             new CodeParser(), new ListParser(), new HeaderParser(), new TextParser() };
-        
+
 
         /// <summary>
         /// Parses the given tokens. Tries to find a sentence in the tokens. 
         /// </summary>
         /// <param name="tokens">A list of tokens to be parsed.</param>
         /// <returns>Null if no sequence was found or a Node representing sentence.</returns>
-        public Node Parse(IToken[]tokens)
-        {   
+        public Node Parse(IToken[] tokens)
+        {
             return MatchOneSentence(tokens, SentenceParsers);
         }
 

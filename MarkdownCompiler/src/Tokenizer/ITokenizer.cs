@@ -1,4 +1,4 @@
-﻿namespace StaticSiteGenerator
+﻿namespace MarkdownCompiler
 {
     /// <summary>
     /// Must represent a Tokenizer. Must be accompanied by a creation of a specific parser. 

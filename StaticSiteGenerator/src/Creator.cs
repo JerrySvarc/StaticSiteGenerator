@@ -1,11 +1,12 @@
-﻿namespace StaticSiteGenerator
+﻿using MarkdownCompiler;
+namespace StaticSiteGenerator
 {
-    internal class Creator 
+    internal class Creator
     {
         private string TemplateConfigContent = "{\"Author\":\"John Doe\", \"WebsiteName\":\"A very nice website\"}";
-        MarkdownCompiler Compiler { get; set; }
+        Compiler Compiler { get; set; }
 
-        public Creator(MarkdownCompiler compiler)
+        public Creator(Compiler compiler)
         {
             Compiler = compiler;
         }
@@ -27,10 +28,10 @@
             }
             else
             {
-                List<Task<bool>> tasks = new List<Task<bool>>();
+                List<Task> tasks = new List<Task>();
                 foreach (var post in posts)
                 {
-                    tasks.Add(Compiler.CompileFileAsync(post));
+                    tasks.Add(Compiler.CompileFileAsync(post, "output"));
                 }
                 await Task.WhenAll(tasks);
             }

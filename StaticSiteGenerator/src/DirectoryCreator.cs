@@ -14,24 +14,12 @@
                 Directory.CreateDirectory(websiteDirectory);
                 Directory.CreateDirectory(websiteDirectory + "/posts");
                 Directory.CreateDirectory(websiteDirectory + "/pictures");
+                Directory.CreateDirectory(websiteDirectory + "/output");
             }
             catch (Exception)
             {
                 Console.WriteLine("An error has occured. Cannot create website directories.");
             }
         }
-
-        /// <summary>
-        /// Creates the output directory.
-        /// </summary>
-        public static void CreateOutputDirectory()
-        {
-            string dirName = new DirectoryInfo(Directory.GetCurrentDirectory()).Name;
-            if (Directory.Exists("website/posts") || (dirName == "website" && Directory.Exists("posts")))
-            {
-                Directory.CreateDirectory("FinishedSite");
-            }
-        }
-
     }
 }
