@@ -11,7 +11,14 @@ namespace MarkdownCompiler
             IsInsideWebDirectory = isInsideWebDirectory;
         }
 
-        public async Task CompileFileAsync(string path, string outputDirectoryName )
+        /// <summary>
+        /// Asynchronously reads, tokenizes and parses a markdown file and converts its contents into HTML and writes the result asynchronously into a file with the extension ".html" at 
+        /// the specified output directory. Will let the user know if an error during the compilation occured via the console. 
+        /// </summary>
+        /// <param name="path">The path to a file we want to compile.</param>
+        /// <param name="outputDirectoryName">The output directory where we want to put our newly generated HTML file.</param>
+        /// <returns></returns>
+        public async Task CompileFileAsync(string path, string outputDirectoryName)
         {
             string fileName = Path.GetFileNameWithoutExtension(path);
             try
@@ -33,9 +40,17 @@ namespace MarkdownCompiler
             }
         }
 
-        async Task CompileAndOutputFileAsync(List<IToken> resultTokens, string fileName, string title, string outputDirectoryName )
+        /// <summary>
+        /// Parses the tokens paragraph by paragraph, then generates the HTML of the paragraph and asynchronously writes to a file at the specified location.
+        /// </summary>
+        /// <param name="resultTokens">A list of tokens.</param>
+        /// <param name="fileName">Name of the file we want to put our generated HTML.</param>
+        /// <param name="title">The extracted title of the page.</param>
+        /// <param name="outputDirectoryName">The output directory where we want to put our newly generated file.</param>
+        /// <returns></returns>
+        async Task CompileAndOutputFileAsync(List<IToken> resultTokens, string fileName, string title, string outputDirectoryName)
         {
-            
+
             Generator generator = new Generator();
             string newFilePath;
             if (IsInsideWebDirectory)
@@ -65,6 +80,11 @@ namespace MarkdownCompiler
             }
         }
 
+        /// <summary>
+        /// Asynchronously reads the first three lines of the specified file and returns the title of the page specified by the "Name" tag. 
+        /// </summary>
+        /// <param name="reader">A stream reader of the file from which we want to extract the title.</param>
+        /// <returns>Task<string> where the string represents the title or null if there was an error.</string></returns>
         async Task<string> GetTitle(StreamReader reader)
         {
             string title = null;
@@ -105,6 +125,13 @@ namespace MarkdownCompiler
             return title;
         }
 
+        /// <summary>
+        /// Asynchronously reads the specified file line by line and returns the title of the page (specified at the top of the page) and the list of tokens representing 
+        /// the contents of the page.
+        /// </summary>
+        /// <param name="name">The path to a file which we want to tokenize.</param>
+        /// <returns>A tuple consisting of a List of Itokens and a string representing the title of the page. Returns (null,null) if an error occured during extraction of the title of tokenizing
+        /// </returns>
         async Task<(List<IToken>, string title)> GetFileTokens(string name)
         {
             ITokenizer tokenizer = new Tokenizer();
@@ -115,10 +142,10 @@ namespace MarkdownCompiler
                 title = await GetTitle(reader);
                 if (title == null)
                 {
-                    return (null,null);
+                    return (null, null);
                 }
                 var line = await reader.ReadLineAsync();
-                
+
                 while (line != null)
                 {
                     var tokens = tokenizer.Tokenize(line);

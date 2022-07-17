@@ -10,7 +10,7 @@ namespace MarkdownCompiler
         public string GenerateParagraphText(ParagraphNode paragraphNode)
         {
             StringBuilder builder = new StringBuilder();
-            
+
             if (paragraphNode.Sentences.Count > 0)
             {
                 if (headerTypes.Contains(paragraphNode.Sentences[0].Type))
@@ -37,7 +37,7 @@ namespace MarkdownCompiler
             switch (paragraphNode.Sentences[0].Type)
             {
                 case NodeType.H1:
-                    return GenerateHeaderString("h1",paragraphNode);
+                    return GenerateHeaderString("h1", paragraphNode);
                     break;
                 case NodeType.H2:
                     return GenerateHeaderString("h2", paragraphNode);
@@ -79,7 +79,7 @@ namespace MarkdownCompiler
                     return " <li>" + node.Value + "</li>\n";
                     break;
                 case NodeType.IMAGE:
-                    if (node.Name!= null)
+                    if (node.Name != null)
                     {
                         return " <img src = " + node.Value + " alt = " + node.Name + " >";
                     }
@@ -125,7 +125,7 @@ namespace MarkdownCompiler
             {
                 builder.Append(paragraphNode.Sentences[0].Value);
             }
-           
+
             builder.Append(" </" + headerType + ">");
             return builder.ToString();
         }
