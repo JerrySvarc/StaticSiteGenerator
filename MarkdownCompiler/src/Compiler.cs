@@ -49,14 +49,19 @@ namespace MarkdownCompiler
 
             using (var writer = new StreamWriter(newFilePath))
             {
+                await writer.WriteLineAsync(generator.GetHeader(title));
                 foreach (var paragraph in Parser.GetAllParagraphs(resultTokens.ToArray()))
                 {
                     if (paragraph != null)
                     {
                         string text = generator.GenerateParagraphText(paragraph);
-                        await writer.WriteLineAsync(text);
+                        if (text != null)
+                        {
+                            await writer.WriteLineAsync(text);
+                        }
                     }
                 }
+                await writer.WriteLineAsync(generator.GetBodyEnd());
             }
         }
 
