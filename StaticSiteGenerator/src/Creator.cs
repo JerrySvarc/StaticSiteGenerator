@@ -3,7 +3,7 @@ namespace StaticSiteGenerator
 {
     internal class Creator
     {
-        private string TemplateConfigContent = "{\"Author\":\"John Doe\", \"WebsiteName\":\"A very nice website\"}";
+        private static readonly string TemplateConfigContent = "{\"Author\":\"John Doe\", \"WebsiteName\":\"A very nice website\"}";
         Compiler Compiler { get; set; }
 
         public Creator(Compiler compiler)
@@ -61,7 +61,7 @@ namespace StaticSiteGenerator
         /// <summary>
         /// Creates the configuration json file.
         /// </summary>
-        private bool GenerateConfigFile()
+        private static bool GenerateConfigFile()
         {
             string dirName = new DirectoryInfo(Directory.GetCurrentDirectory()).Name;
             try
@@ -92,7 +92,7 @@ namespace StaticSiteGenerator
         /// <summary>
         /// Creates the configuration json file and adds the template config structure containing variables 'Name' and 'Author'.
         /// </summary>
-        public void TemplateConfigFile()
+        public static void TemplateConfigFile()
         {
             if (GenerateConfigFile())
             {
@@ -121,6 +121,23 @@ namespace StaticSiteGenerator
                 catch (Exception)
                 {
                     Console.WriteLine("Config file could not be created.");
+                }
+            }
+        }
+        public void CopyPicturesToOutput(string inputDirectoryName, string outputDirectoryName)
+        {
+            var pictures = Directory.EnumerateFiles(inputDirectoryName);
+            foreach (var picture in pictures)
+            {
+                var fileName = new FileInfo(picture).Name;
+                try
+                {
+                    File.Copy(picture, outputDirectoryName + "/" + fileName);
+                }
+                catch (Exception)
+                {
+
+                    Console.WriteLine("An error occured while copying picture " + fileName + " into the output directory.");
                 }
             }
         }

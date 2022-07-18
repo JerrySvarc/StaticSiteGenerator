@@ -18,6 +18,7 @@ namespace StaticSiteGenerator
             {
                 case 0:
                     DirectoryCreator.CreateTemplateDirectories();
+                    Creator.TemplateConfigFile();
                     Console.WriteLine("Necessary directories have been created. Please put your .md files into the \'posts\' directory and your pictures into the \'pictures\' directory.\n" +
                         "Your markdown files will be compiled into the \'output\' directory. ");
                     break;
@@ -25,7 +26,6 @@ namespace StaticSiteGenerator
                     if (args[0].ToLower() != "compile")
                     {
                         Console.WriteLine("Wrong arguments. Please try again.");
-                        PrintHelp();
                     }
                     else
                     {
@@ -37,12 +37,14 @@ namespace StaticSiteGenerator
                             compiler = new Compiler(false);
                             creator = new Creator(compiler);
                             await creator.GenerateHTMLAsync();
+                            creator.CopyPicturesToOutput("website/pictures", "website/output");
                         }
                         else if (dirName == "website" && Directory.Exists("posts"))
                         {
                             compiler = new Compiler(true);
                             creator = new Creator(compiler);
                             await creator.GenerateHTMLAsync();
+                            creator.CopyPicturesToOutput("pictures", "output");
                         }
                         else
                         {
@@ -50,15 +52,7 @@ namespace StaticSiteGenerator
                         }
                     }
                     break;
-                default:
-                    PrintHelp();
-                    break;
             }
-        }
-
-        static void PrintHelp()
-        {
-            Console.WriteLine();
         }
     }
 }

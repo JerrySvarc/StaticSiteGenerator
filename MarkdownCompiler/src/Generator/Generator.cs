@@ -2,7 +2,6 @@
 
 namespace MarkdownCompiler
 {
-    //TODO: implement hte generator
     internal class Generator
     {
         static readonly NodeType[] headerTypes = new NodeType[] { NodeType.H1, NodeType.H2, NodeType.H3, NodeType.H4, NodeType.H5, NodeType.H6 };
@@ -125,7 +124,6 @@ namespace MarkdownCompiler
             {
                 builder.Append(paragraphNode.Sentences[0].Value);
             }
-
             builder.Append(" </" + headerType + ">");
             return builder.ToString();
         }

@@ -47,7 +47,7 @@ namespace MarkdownCompiler
         /// <param name="fileName">Name of the file we want to put our generated HTML.</param>
         /// <param name="title">The extracted title of the page.</param>
         /// <param name="outputDirectoryName">The output directory where we want to put our newly generated file.</param>
-        /// <returns></returns>
+        /// <returns> A task.</returns>
         async Task CompileAndOutputFileAsync(List<IToken> resultTokens, string fileName, string title, string outputDirectoryName)
         {
 
@@ -84,7 +84,7 @@ namespace MarkdownCompiler
         /// Asynchronously reads the first three lines of the specified file and returns the title of the page specified by the "Name" tag. 
         /// </summary>
         /// <param name="reader">A stream reader of the file from which we want to extract the title.</param>
-        /// <returns>Task<string> where the string represents the title or null if there was an error.</string></returns>
+        /// <returns>Task<string> where the string represents the title or null if there was an error.</returns>
         async Task<string> GetTitle(StreamReader reader)
         {
             string title = null;
