@@ -131,7 +131,7 @@ namespace MarkdownCompiler
 
         public string GetHeader(string title)
         {
-            string template = "<!DOCTYPE html>\n <html>\n<head>\n<title>" + title + "</title>\n</head>\n<body>";
+            string template = "<!DOCTYPE html>\n <html>\n<head>\n<title>" + title + "</title>\n<link rel=\"stylesheet\" type='text/css' href=\"style.css\">\n</head>\n<body>";
             return template;
         }
 
