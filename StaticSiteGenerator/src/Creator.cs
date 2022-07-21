@@ -17,7 +17,7 @@ namespace StaticSiteGenerator
         }
 
         /// <summary>
-        /// Generator will compile all markdown files inside the posts directory into html and put the inside the output directory.
+        /// Creator will compile all markdown files inside the posts directory into html and put the inside the output directory.
         /// </summary>
         public async Task GenerateHTMLAsync()
         {
@@ -34,6 +34,7 @@ namespace StaticSiteGenerator
                     tasks.Add(Compiler.CompileFileAsync(post, "output"));
                 }
                 await Task.WhenAll(tasks);
+                await Compiler.CreateIndexFileAsync("output", "config.json");
             }
         }
 
@@ -120,10 +121,16 @@ namespace StaticSiteGenerator
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Config file could not be created.");
+                    Console.WriteLine("A config file might already exist.");
                 }
             }
+            Console.WriteLine("Config file could not be created.");
         }
+        /// <summary>
+        /// Copies files from the input directory into the ouput directory.
+        /// </summary>
+        /// <param name="inputDirectoryName">Name of the input directory.</param>
+        /// <param name="outputDirectoryName">Name of the output directory.</param>
         public void CopyPicturesToOutput(string inputDirectoryName, string outputDirectoryName)
         {
             var pictures = Directory.EnumerateFiles(inputDirectoryName);

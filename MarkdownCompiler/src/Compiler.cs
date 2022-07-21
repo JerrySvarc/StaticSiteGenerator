@@ -6,9 +6,14 @@ namespace MarkdownCompiler
     public sealed class Compiler
     {
         bool IsInsideWebDirectory { get; init; }
-        public Compiler(bool isInsideWebDirectory)
+        Dictionary<string, string> FileTitles;
+        string ConfigFileName { get; set; }
+        
+        public Compiler(bool isInsideWebDirectory, string configFileName)
         {
             IsInsideWebDirectory = isInsideWebDirectory;
+            FileTitles = new Dictionary<string, string>();
+            ConfigFileName = configFileName;
         }
 
         /// <summary>
@@ -17,7 +22,7 @@ namespace MarkdownCompiler
         /// </summary>
         /// <param name="path">The path to a file we want to compile.</param>
         /// <param name="outputDirectoryName">The output directory where we want to put our newly generated HTML file.</param>
-        /// <returns></returns>
+        /// <returns>A task.</returns>
         public async Task CompileFileAsync(string path, string outputDirectoryName)
         {
             string fileName = Path.GetFileNameWithoutExtension(path);
@@ -26,6 +31,7 @@ namespace MarkdownCompiler
                 var result = await GetFileTokens(path);
                 if (result.Item1 != null && result.Item2 != null)
                 {
+                    FileTitles[fileName+".html"] = result.Item2;
                     await CompileAndOutputFileAsync(result.Item1, fileName, result.Item2, outputDirectoryName);
                     await Console.Out.WriteLineAsync(fileName + ".md has been successfully compiled.");
                 }
@@ -77,6 +83,7 @@ namespace MarkdownCompiler
                     }
                 }
                 await writer.WriteLineAsync(generator.GetBodyEnd());
+                await writer.WriteLineAsync(generator.GetFooter(await ConfigLoader.GetConfigContentAsync(IsInsideWebDirectory,ConfigFileName)));
             }
         }
 
@@ -84,8 +91,8 @@ namespace MarkdownCompiler
         /// Asynchronously reads the first three lines of the specified file and returns the title of the page specified by the "Name" tag. 
         /// </summary>
         /// <param name="reader">A stream reader of the file from which we want to extract the title.</param>
-        /// <returns>Task<string> where the string represents the title or null if there was an error.</returns>
-        async Task<string> GetTitle(StreamReader reader)
+        /// <returns>Task where the string represents the title or null if there was an error.</returns>
+        async Task<string> TryGetTitleAsync(StreamReader reader)
         {
             string title = null;
             for (int i = 0; i < 3; i++)
@@ -139,7 +146,7 @@ namespace MarkdownCompiler
             string title;
             using (StreamReader reader = new StreamReader(name))
             {
-                title = await GetTitle(reader);
+                title = await TryGetTitleAsync(reader);
                 if (title == null)
                 {
                     return (null, null);
@@ -159,5 +166,38 @@ namespace MarkdownCompiler
             }
             return (resultTokens, title);
         }
+
+
+        public async Task CreateIndexFileAsync(string outputDirectory, string configFileName)
+        {
+            IndexFileCreator indexFileCreator = new IndexFileCreator(FileTitles, configFileName);
+            string indexFileContent = await indexFileCreator.GetIndexFileContents();
+            try
+            {
+                if (IsInsideWebDirectory)
+                {
+                    using (StreamWriter writer = new StreamWriter(outputDirectory + "/index.html"))
+                    {
+                        writer.WriteAsync(indexFileContent);
+                    }
+                }
+                else
+                {
+                    using (StreamWriter writer = new StreamWriter("website/" + outputDirectory + "/index.html"))
+                    {
+                        writer.WriteAsync(indexFileContent);
+                    }
+                }
+                await Console.Out.WriteLineAsync("The index.html has been successfully created.");
+            }
+            catch (Exception)
+            {
+
+                await Console.Out.WriteLineAsync("An error occured during the creation of the index.html");
+            }
+        }
+
+       
     }
+    
 }

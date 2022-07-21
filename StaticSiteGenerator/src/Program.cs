@@ -34,14 +34,14 @@ namespace StaticSiteGenerator
                         Creator creator;
                         if (Directory.Exists("website/posts"))
                         {
-                            compiler = new Compiler(false);
+                            compiler = new Compiler(false, "config.json");
                             creator = new Creator(compiler);
                             await creator.GenerateHTMLAsync();
                             creator.CopyPicturesToOutput("website/pictures", "website/output");
                         }
                         else if (dirName == "website" && Directory.Exists("posts"))
                         {
-                            compiler = new Compiler(true);
+                            compiler = new Compiler(true, "config.json");
                             creator = new Creator(compiler);
                             await creator.GenerateHTMLAsync();
                             creator.CopyPicturesToOutput("pictures", "output");
