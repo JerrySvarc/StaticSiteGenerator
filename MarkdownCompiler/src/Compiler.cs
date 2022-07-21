@@ -8,7 +8,7 @@ namespace MarkdownCompiler
         bool IsInsideWebDirectory { get; init; }
         Dictionary<string, string> FileTitles;
         string ConfigFileName { get; set; }
-        
+
         public Compiler(bool isInsideWebDirectory, string configFileName)
         {
             IsInsideWebDirectory = isInsideWebDirectory;
@@ -31,7 +31,7 @@ namespace MarkdownCompiler
                 var result = await GetFileTokens(path);
                 if (result.Item1 != null && result.Item2 != null)
                 {
-                    FileTitles[fileName+".html"] = result.Item2;
+                    FileTitles[fileName + ".html"] = result.Item2;
                     await CompileAndOutputFileAsync(result.Item1, fileName, result.Item2, outputDirectoryName);
                     await Console.Out.WriteLineAsync(fileName + ".md has been successfully compiled.");
                 }
@@ -83,7 +83,7 @@ namespace MarkdownCompiler
                     }
                 }
                 await writer.WriteLineAsync(generator.GetBodyEnd());
-                await writer.WriteLineAsync(generator.GetFooter(await ConfigLoader.GetConfigContentAsync(IsInsideWebDirectory,ConfigFileName)));
+                await writer.WriteLineAsync(generator.GetFooter(await ConfigLoader.GetConfigContentAsync(IsInsideWebDirectory, ConfigFileName)));
             }
         }
 
@@ -167,7 +167,12 @@ namespace MarkdownCompiler
             return (resultTokens, title);
         }
 
-
+        /// <summary>
+        /// Asynchronously creates the index html file in the specified output directory. Uses the contents of the config.json file. All posts are displayed on the index page along with their links and titles.  
+        /// </summary>
+        /// <param name="outputDirectory">Where to put the index file.</param>
+        /// <param name="configFileName">The name of the config file containing the information about the website name and the name of the author.</param>
+        /// <returns></returns>
         public async Task CreateIndexFileAsync(string outputDirectory, string configFileName)
         {
             IndexFileCreator indexFileCreator = new IndexFileCreator(FileTitles, configFileName);
@@ -197,7 +202,7 @@ namespace MarkdownCompiler
             }
         }
 
-       
+
     }
-    
+
 }
