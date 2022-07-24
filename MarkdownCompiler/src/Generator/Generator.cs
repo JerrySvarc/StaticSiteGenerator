@@ -142,7 +142,7 @@ namespace MarkdownCompiler
 
         public string GetFooter(ConfigContent authorAndTitle)
         {
-            return "<footer> \n <p> Author: " + authorAndTitle.Author.ToString() + "</footer>";
+            return "<footer> \n <p> Author: " + authorAndTitle.Author.ToString() + "</p>\n</footer>";
         }
     }
 }
