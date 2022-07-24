@@ -61,7 +61,7 @@ namespace MarkdownCompiler
 
             Generator generator = new Generator();
 
-            if (!Directory.Exists(outputDirectoryName))
+            if (!Directory.Exists(outputDirectoryName) && !Directory.Exists("website/" + outputDirectoryName))
             {
                 await Console.Out.WriteLineAsync(outputDirectoryName + " directory not found.");
                 return false;
@@ -185,6 +185,7 @@ namespace MarkdownCompiler
         /// <returns></returns>
         public async Task CreateIndexFileAsync(string outputDirectory, string configFileName)
         {
+
             IndexFileCreator indexFileCreator = new IndexFileCreator(FileTitles, configFileName);
             string indexFileContent = await indexFileCreator.GetIndexFileContents();
             try

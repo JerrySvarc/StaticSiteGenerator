@@ -136,19 +136,32 @@ namespace StaticSiteGenerator
         /// <param name="outputDirectoryName">Name of the output directory.</param>
         public void CopyPicturesToOutput(string inputDirectoryName, string outputDirectoryName)
         {
-            var pictures = Directory.EnumerateFiles(inputDirectoryName);
-            foreach (var picture in pictures)
+            if (!Directory.Exists(inputDirectoryName))
             {
-                var fileName = new FileInfo(picture).Name;
-                try
-                {
-                    File.Copy(picture, outputDirectoryName + "/" + fileName);
-                }
-                catch (Exception)
-                {
+                Console.WriteLine("Could not find the " + inputDirectoryName +  " directory.");
+                return;
+            }
 
-                    Console.WriteLine("An error occured while copying picture " + fileName + " into the output directory.");
+            var pictures = Directory.EnumerateFiles(inputDirectoryName);
+            if (Directory.Exists(outputDirectoryName))
+            {
+                foreach (var picture in pictures)
+                {
+                    var fileName = new FileInfo(picture).Name;
+                    try
+                    {
+                        File.Copy(picture, outputDirectoryName + "/" + fileName);
+                    }
+                    catch (Exception)
+                    {
+
+                        Console.WriteLine("An error occured while copying picture " + fileName + " into the output directory.");
+                    }
                 }
+            }
+            else
+            {
+                Console.WriteLine("Cannot find the" + outputDirectoryName + " directory.");
             }
         }
     }
