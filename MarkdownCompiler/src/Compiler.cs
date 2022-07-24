@@ -32,8 +32,10 @@ namespace MarkdownCompiler
                 if (result.Item1 != null && result.Item2 != null)
                 {
                     FileTitles[fileName + ".html"] = result.Item2;
-                    await CompileAndOutputFileAsync(result.Item1, fileName, result.Item2, outputDirectoryName);
-                    await Console.Out.WriteLineAsync(fileName + ".md has been successfully compiled.");
+                    if (await CompileAndOutputFileAsync(result.Item1, fileName, result.Item2, outputDirectoryName))
+                    {
+                        await Console.Out.WriteLineAsync(fileName + ".md has been successfully compiled.");
+                    }
                 }
                 else
                 {
@@ -54,10 +56,17 @@ namespace MarkdownCompiler
         /// <param name="title">The extracted title of the page.</param>
         /// <param name="outputDirectoryName">The output directory where we want to put our newly generated file.</param>
         /// <returns> A task.</returns>
-        async Task CompileAndOutputFileAsync(List<IToken> resultTokens, string fileName, string title, string outputDirectoryName)
+        async Task<bool> CompileAndOutputFileAsync(List<IToken> resultTokens, string fileName, string title, string outputDirectoryName)
         {
 
             Generator generator = new Generator();
+
+            if (!Directory.Exists(outputDirectoryName))
+            {
+                await Console.Out.WriteLineAsync(outputDirectoryName + " directory not found.");
+                return false;
+            }
+
             string newFilePath;
             if (IsInsideWebDirectory)
             {
@@ -84,6 +93,7 @@ namespace MarkdownCompiler
                 }
                 await writer.WriteLineAsync(generator.GetBodyEnd());
                 await writer.WriteLineAsync(generator.GetFooter(await ConfigLoader.GetConfigContentAsync(IsInsideWebDirectory, ConfigFileName)));
+                return true;
             }
         }
 
