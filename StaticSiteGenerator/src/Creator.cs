@@ -124,7 +124,10 @@ namespace StaticSiteGenerator
                     Console.WriteLine("A config file might already exist.");
                 }
             }
-            Console.WriteLine("Config file could not be created.");
+            else
+            {
+                Console.WriteLine("Config file could not be created.");
+            }
         }
         /// <summary>
         /// Copies files from the input directory into the ouput directory.
