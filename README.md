@@ -1,3 +1,6 @@
+---
+Name: User guide
+---
 # Static site generator
 
 This program is created as a semestral project for the NPRG035 and NPRG038 courses. 
@@ -64,14 +67,16 @@ A line beginning with a "+" symbol will be compiled into an unordered list item.
 #### Link to another page
 
 A link to another page can be either named or unnamed: 
-+ Named: "[Name](https://www.google.com)"
-+ Unnamed: "[](https://www.google.com)"
+
++ Named: name inside square brackets followed by a link inside normal brackets
++ Unnamed: empty square brackets followed by a link inside normal brackets
 
 #### Reference to an image
 
 A reference to an image can be either named or unnamed: 
-+ Named: "![Name](name of the picture inside the pictures directory)"
-+ Unnamed: "![](name of the picture inside the pictures directory)"
+
++ Named: name inside square brackets followed by a name of the picture inside normal brackets
++ Unnamed: empty square brackets followed by a name of the picture inside normal brackets
 
 ### Compilation of the website
 
